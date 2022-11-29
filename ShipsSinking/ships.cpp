@@ -53,7 +53,13 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				if (x == 0 && y == 0)
 				{
 					if (canIPlaceShip(x, y, 2, 2) == true)
-							addShip(x, y);
+					{
+						if (maszty == 1)addShip(x, y);
+						else
+						{
+							addLongShip(x, y, maszty);
+						}
+					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
@@ -64,7 +70,13 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				if ((x == 0) && (y == 9))
 				{
 					if (canIPlaceShip(0, 8, 2, 2) == true)
-						addShip(x, y);
+					{
+						if (maszty == 1)addShip(x, y);
+						else
+						{
+							addLongShip(x, y, maszty);
+						}
+					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
@@ -76,7 +88,13 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				if ((x == 9) && (y == 0))
 				{
 					if (canIPlaceShip(8, y, 2, 2) == true)
-						addShip(x, y);
+					{
+						if (maszty == 1)addShip(x, y);
+						else
+						{
+							addLongShip(x, y, maszty);
+						}
+					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
@@ -89,7 +107,13 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				if ((x == 9) && (y == 9))
 				{
 					if (canIPlaceShip(8, 8, 2, 2) == true)
-						addShip(x, y);
+					{
+						if (maszty == 1)addShip(x, y);
+						else
+						{
+							addLongShip(x, y, maszty);
+						}
+					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
@@ -101,7 +125,13 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				if ((x == 0) && (y < 9))
 				{
 					if (canIPlaceShip(x, y - 1, 2, 3) == true)
-						addShip(x, y);
+					{
+						if (maszty == 1)addShip(x, y);
+						else
+						{
+							addLongShip(x, y, maszty);
+						}
+					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
@@ -113,7 +143,13 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				if ((x == 9) && (y < 9))
 				{
 					if (canIPlaceShip(x - 1, y - 1, 2, 3) == true)
-						addShip(x, y);
+					{
+						if (maszty == 1)addShip(x, y);
+						else
+						{
+							addLongShip(x, y, maszty);
+						}
+					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
@@ -138,7 +174,6 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				{
 					if (canIPlaceShip(x - 1, y - 1, 3, 2) == true)
 						addShip(x, y);
-					else
 					{
 						std::cout << "to wbrew zasada\n";
 						addShipToGame();
@@ -153,12 +188,7 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 						if(maszty == 1)addShip(x, y);
 						else
 						{
-							
-						
-							
-							
-							
-
+							addLongShip(x, y, maszty);
 						}
 					}
 					else
@@ -257,31 +287,64 @@ void ships::addLongShip(int x,int y,int maszty)
 {
 	char whichWay;
 	bool prawo = false, gora = false, dol = false, lewo = false;
-	///sprawdzenia czy moge dac statki w dane kierunki
-						/// gora
-	if (x >= maszty - 1)
+	///if direction is false -> u cant move that direction
+	///if direction is true -> u can move that direction
+						/// up
+	if (x >= maszty -1)
 	{
-		if(canIPlaceShip(x+maszty,y-1,maszty, 3)==true)gora = true;
+		if(canIPlaceShip(x-maszty-1,y-1,maszty, 3)==true)gora = true;
 		
 	}
 
 
-						/// dol
-	if()
+						/// down
+	if(x+maszty<11)
+	{
+		if (canIPlaceShip(x-1, y - 1, maszty, 3) == true)dol = true;
+	}
 
 
-						/// lewo
-						///	prawo
-
-
-	std::cout << "aby przedlozyc statki o reszte masztow w prawo wcisnij P aby w dol D w gore G i w lewo l";
+						/// right
+	if(y + maszty < 11)
+	{
+		if (canIPlaceShip(x - 1, y, 3, maszty) == true)prawo = true;
+	}
+						///	left
+	if(y >= maszty - 1)
+	{
+		if (canIPlaceShip(x - 1, y - maszty, 3, maszty) == true)lewo = true;
+	}
+	std::cout << "aby przedlozyc statki o reszte masztow w prawo wcisnij P aby w dol D w gore G i w lewo l\n";
 	while (true)
 	{
 		std::cin >> whichWay;
-		if (whichWay == 'p' || whichWay == 'd')break;
-		else std::cout << "kliknij prawidlowa opcje";
+
+		if ((whichWay == 'p' && prawo==true) || (whichWay == 'd' && dol ==true) || ( whichWay == 'g' && gora == true)||(whichWay == 'l' && lewo == true))break;
+
+		else std::cout << "kliknij prawidlowa opcje\n";
+	}
+	std::cout << lewo<<"\n";
+	switch (whichWay)
+	{
+	case 'p':
+		for (int i = 0; i < maszty; i++)
+			addShip(x, y + i);
+		break;
+	case 'd':
+		for (int i = 0; i < maszty; i++)
+			addShip(x + i, y);
+		break;
+	case 'g':
+		for (int i = 0; i < maszty; i++)
+			addShip(x - i, y);
+		break;
+	case 'l':
+		for (int i = 0; i < maszty; i++)
+			addShip(x, y - i);
+		break;
 	}
 
+	
 
 }
 
