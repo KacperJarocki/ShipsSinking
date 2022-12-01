@@ -18,6 +18,10 @@ computer::computer()
 	quantity4ships = 0;
 	quantity5ships = 0;
 	deadlyHit = true;
+	right = false;
+	left = false;
+	up = false;
+	down = false;
 	
 	
 }

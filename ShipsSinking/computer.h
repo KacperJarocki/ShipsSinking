@@ -4,6 +4,7 @@
 
 class computer :public user
 {
+	friend class ships;
 	int firstX;// first hit
 	int firstY;
 	int lastX;// last shot
@@ -11,6 +12,10 @@ class computer :public user
 	int nextX;
 	int nextY;
 	int deadlyHit;
+	bool left;
+	bool right;
+	bool up;
+	bool down;
 	bool wasFirstHit;
 public:
 	computer();
