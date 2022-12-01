@@ -1,5 +1,5 @@
 #include "computer.h"
-
+#include <iostream>
 computer::computer()
 {
 	firstX = -1;
