@@ -6,7 +6,7 @@ class ships
 {
 	int positions[10][10]{};
 	int lives;
-	int sum;
+///	int sum;
 
 	
 public:

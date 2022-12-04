@@ -24,8 +24,10 @@ bool ships::canIPlaceShip(int x, int y, int rzad, int miejsca  ) const
 }
 
 
-
-
+/**
+ todo:dodac ship::where w odpowiednie miejsce w add ship to game
+ 
+ */
 void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 {
 	int x, y, maszty;
@@ -217,10 +219,11 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 
 }
 
+//todo: zliczyc to uzywajac ship array dodac
 void ships::addLives(int n)
 {
 	lives = n;
-	sum = 0;
+	///sum = 0; zbedne
 }
 
 void ships::liveCheck() const
@@ -232,7 +235,7 @@ void ships::liveCheck() const
 	}
 }
 
-void ships::clearPositions()
+void ships::clearPositions()// raczej nie potrzebne do weryfikacji
 {
 	for(int i = 0; i < 10; i++)
 		for (int j = 0; j < 10; j++)
@@ -240,19 +243,20 @@ void ships::clearPositions()
 }
 
 /**
- adds ship to the board
+todo: poprawic player screen
  */
 void ships::addShip(int x, int y)
 {	
 	
 	positions[x][y] = 1;
-	sum++;
+	//sum++;
 	
 	playerScreen();
 }
 
 /**
  checks if there is any ship at given coordinates
+ todo: dodac zastowane zmienne w computer h aby komputer mogl wybierac dane koordynaty w dobry sposob
  */
 void ships::hit(int x, int y)
 {
@@ -272,6 +276,9 @@ void ships::hit(int x, int y)
 	playerScreen();
 }
 
+/**
+ do poprawy
+ */
 void ships::playerScreen() const
 
 {
@@ -284,6 +291,7 @@ void ships::playerScreen() const
 	}
 	std::cout << std::endl;
 }
+ //todo: dodac ship w odpowienie miejsce i poprawic
 
 void ships::addLongShip(int x,int y,int maszty)
 {
