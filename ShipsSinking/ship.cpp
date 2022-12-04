@@ -1,5 +1,11 @@
 #include "ship.h"
 
+ship::ship()
+{
+	maszt = 0;
+	lives = 0;
+}
+
 void ship::setMasztAndLives(int maszty)
 {
 	maszt = maszty;
