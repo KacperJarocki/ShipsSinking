@@ -1,5 +1,5 @@
 #include "ships.h"
-#include "user.h"
+
 #include <iostream>
 
 bool ifOutsideOfArrey(int x, int y,int maszty)
@@ -58,10 +58,10 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				{
 					if (canIPlaceShip(x, y, 2, 2) == true)
 					{
-						if (maszty == 1)addShip(x, y);
+						if (maszty == 1)addShip(x, y, shipToAdd);
 						else
 						{
-							addLongShip(x, y, maszty);
+							addLongShip(x, y, maszty, shipToAdd);
 						}
 					}
 					else
@@ -75,10 +75,10 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				{
 					if (canIPlaceShip(0, 8, 2, 2) == true)
 					{
-						if (maszty == 1)addShip(x, y);
+						if (maszty == 1)addShip(x, y, shipToAdd);
 						else
 						{
-							addLongShip(x, y, maszty);
+							addLongShip(x, y, maszty, shipToAdd);
 						}
 					}
 					else
@@ -93,10 +93,10 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				{
 					if (canIPlaceShip(8, y, 2, 2) == true)
 					{
-						if (maszty == 1)addShip(x, y);
+						if (maszty == 1)addShip(x, y, shipToAdd);
 						else
 						{
-							addLongShip(x, y, maszty);
+							addLongShip(x, y, maszty, shipToAdd);
 						}
 					}
 					else
@@ -112,10 +112,10 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				{
 					if (canIPlaceShip(8, 8, 2, 2) == true)
 					{
-						if (maszty == 1)addShip(x, y);
+						if (maszty == 1)addShip(x, y, shipToAdd);
 						else
 						{
-							addLongShip(x, y, maszty);
+							addLongShip(x, y, maszty, shipToAdd);
 						}
 					}
 					else
@@ -130,10 +130,10 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				{
 					if (canIPlaceShip(x, y - 1, 2, 3) == true)
 					{
-						if (maszty == 1)addShip(x, y);
+						if (maszty == 1)addShip(x, y, shipToAdd);
 						else
 						{
-							addLongShip(x, y, maszty);
+							addLongShip(x, y, maszty, shipToAdd);
 						}
 					}
 					else
@@ -148,10 +148,10 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				{
 					if (canIPlaceShip(x - 1, y - 1, 2, 3) == true)
 					{
-						if (maszty == 1)addShip(x, y);
+						if (maszty == 1)addShip(x, y, shipToAdd);
 						else
 						{
-							addLongShip(x, y, maszty);
+							addLongShip(x, y, maszty, shipToAdd);
 						}
 					}
 					else
@@ -165,7 +165,7 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				if ((y == 0) && (x < 9))
 				{
 					if (canIPlaceShip(x - 1, y, 3, 2) == true)
-						addShip(x, y);
+						addShip(x, y, shipToAdd);
 					else
 					{
 						std::cout << "to wbrew zasada\n";
@@ -177,7 +177,7 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				if (y == 9 && x < 9)
 				{
 					if (canIPlaceShip(x - 1, y - 1, 3, 2) == true)
-						addShip(x, y);
+						addShip(x, y, shipToAdd);
 					{
 						std::cout << "to wbrew zasada\n";
 						addShipToGame();
@@ -189,10 +189,10 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				{
 					if (canIPlaceShip(x - 1, y - 1, 3, 3) == true)
 					{
-						if(maszty == 1)addShip(x, y);
+						if(maszty == 1)addShip(x, y, shipToAdd);
 						else
 						{
-							addLongShip(x, y, maszty);
+							addLongShip(x, y, maszty, shipToAdd);
 						}
 					}
 					else
@@ -219,21 +219,9 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 
 }
 
-//todo: zliczyc to uzywajac ship array dodac
-void ships::addLives(int n)
-{
-	lives = n;
-	///sum = 0; zbedne
-}
 
-void ships::liveCheck() const
-{
-	if (lives < 1)
-	{
-		std::cout << "u lost :(";
-		exit(0);
-	}
-}
+
+
 
 void ships::clearPositions()// raczej nie potrzebne do weryfikacji
 {
@@ -245,10 +233,11 @@ void ships::clearPositions()// raczej nie potrzebne do weryfikacji
 /**
 todo: poprawic player screen
  */
-void ships::addShip(int x, int y)
+void ships::addShip(int x, int y,ship &p)
 {	
 	
 	positions[x][y] = 1;
+	p.setWhere(x, y);
 	//sum++;
 	
 	playerScreen();
@@ -256,17 +245,18 @@ void ships::addShip(int x, int y)
 
 /**
  checks if there is any ship at given coordinates
- todo: dodac zastowane zmienne w computer h aby komputer mogl wybierac dane koordynaty w dobry sposob
+ todo: napisac metode hit z zabezpieczeniami
  */
 void ships::hit(int x, int y)
 {
 	int hitted = 2, missed = 3;
+	
 	if (positions[x-1][y-1] == 1)
 	{
 		positions[x-1][y-1] = hitted;
+
 		std::cout<<"u got a hit"<<std::endl;
-		lives--;
-		liveCheck();
+		
 	}
 	else
 	{
@@ -291,9 +281,9 @@ void ships::playerScreen() const
 	}
 	std::cout << std::endl;
 }
- //todo: dodac ship w odpowienie miejsce i poprawic
 
-void ships::addLongShip(int x,int y,int maszty)
+
+void ships::addLongShip(int x,int y,int maszty,ship& shipToAdd)
 {
 	char whichWay;
 	bool prawo = false, gora = false, dol = false, lewo = false;
@@ -337,19 +327,19 @@ void ships::addLongShip(int x,int y,int maszty)
 	{
 	case 'p':
 		for (int i = 0; i < maszty; i++)
-			addShip(x, y + i);
+			addShip(x, y + i, shipToAdd);
 		break;
 	case 'd':
 		for (int i = 0; i < maszty; i++)
-			addShip(x + i, y);
+			addShip(x + i, y, shipToAdd);
 		break;
 	case 'g':
 		for (int i = 0; i < maszty; i++)
-			addShip(x - i, y);
-		break;
+			addShip(x - i, y, shipToAdd);
+		break; 
 	case 'l':
 		for (int i = 0; i < maszty; i++)
-			addShip(x, y - i);
+			addShip(x, y - i, shipToAdd);
 		break;
 	}
 
