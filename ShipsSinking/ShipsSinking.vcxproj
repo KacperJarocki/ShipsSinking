@@ -130,12 +130,16 @@
     <ClCompile Include="computer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="ship.cpp" />
+    <ClCompile Include="shipArray.cpp" />
     <ClCompile Include="user.cpp" />
     <ClCompile Include="ships.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="computer.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="ship.h" />
+    <ClInclude Include="shipArray.h" />
     <ClInclude Include="user.h" />
     <ClInclude Include="ships.h" />
   </ItemGroup>

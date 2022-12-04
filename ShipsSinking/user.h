@@ -1,8 +1,10 @@
 #pragma once
+#include "shipArray.h"
 class user
 {
 protected:
 	bool LastShotHit;//true if last shot was succesful false otherwise
+	shipArray shipTab;
 	int  quantity5ships;// quantity of ships made of 5 blocks
 	int  quantity4ships;
 	int  quantity3ships;

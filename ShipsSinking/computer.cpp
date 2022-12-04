@@ -38,8 +38,7 @@ void computer::nextTarget()
 	}
 	if(wasFirstHit == true && deadlyHit == false)
 	{
-		///test 
-/// wrote on ipad
+	
 	}
 
 }

@@ -1,4 +1,5 @@
 #include "ships.h"
+#include "user.h"
 #include <iostream>
 
 bool ifOutsideOfArrey(int x, int y,int maszty)
@@ -28,12 +29,13 @@ bool ships::canIPlaceShip(int x, int y, int rzad, int miejsca  ) const
 void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 {
 	int x, y, maszty;
+	ship shipToAdd;
 	
 	std::cout << "podaj x , y, a nastepnie ilu masztowy jest to statek\n";
 	std::cin >> x;
 	std::cin >> y;
 	std::cin >> maszty;
-	
+	shipToAdd.setMasztAndLives(maszty);
 	
 	
 	if (ifOutsideOfArrey(x, y, maszty) == false)
@@ -232,7 +234,7 @@ void ships::liveCheck() const
 
 void ships::clearPositions()
 {
-	for (int i = 0; i < 10; i++)
+	for(int i = 0; i < 10; i++)
 		for (int j = 0; j < 10; j++)
 			positions[i][j] = 0;
 }
@@ -303,8 +305,7 @@ void ships::addLongShip(int x,int y,int maszty)
 		if (canIPlaceShip(x-1, y - 1, maszty, 3) == true)dol = true;
 	}
 
-
-						/// right
+							/// right
 	if(y + maszty < 11)
 	{
 		if (canIPlaceShip(x - 1, y, 3, maszty) == true)prawo = true;
