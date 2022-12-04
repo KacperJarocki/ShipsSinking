@@ -5,6 +5,8 @@ class ship ///this class exist to help with counting lives and with helping comp
 	int lives;
 	int where[10][10]{};
 public:
+	ship();
+
 	void setMasztAndLives(int maszty);// to count how many lives in total
 	void setWhere(int x, int y); ///todo: dodac w odpowiednie miejscie 
 
