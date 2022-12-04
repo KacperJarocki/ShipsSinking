@@ -1,12 +1,12 @@
 #pragma once
-class ship
+class ship ///this class exist to help with counting lives and with helping computers choosing
 {
 	int maszt;
 	int lives;
 	int where[10][10]{};
 public:
-	void setMasztAndLives(int maszty);
-	void setWhere(int x, int y);
+	void setMasztAndLives(int maszty);// to count how many lives in total
+	void setWhere(int x, int y); ///todo: dodac w odpowiednie miejscie 
 
 
 };
