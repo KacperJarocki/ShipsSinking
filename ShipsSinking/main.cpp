@@ -1,4 +1,6 @@
 #include "ships.h"
+#include "user.h"
+#include "player.h"
 #include <iostream>
 
 
@@ -6,11 +8,9 @@
 
 int main()
 {
-	ships statki;
-	statki.playerScreen();
-	statki.addShipToGame();
-	statki.addShipToGame();
-	statki.addShipToGame();
+	player siema;
+	ships oks;
+	oks.addShipToGame(siema);
 
 	std::cout << "czekaj";
 	
