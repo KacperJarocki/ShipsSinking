@@ -3,7 +3,7 @@
 
 void user::setLives()
 {
- userLives = shipTab.countOfLives();
+	userLives = shipTab.countOfLives();
 }
 
 void user::liveCheck() const
@@ -13,4 +13,19 @@ void user::liveCheck() const
 		std::cout << "u lost :(";
 		exit(0);
 	}
+}
+
+void user::addShips()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < quantityShips[i]; j++)
+			myBoard.addShipToGame(shipTab, i+1);
+	}
+}
+
+void user::testing()
+{
+	setLives();
+	std::cout << userLives;
 }

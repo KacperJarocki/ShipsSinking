@@ -9,11 +9,7 @@ protected:
 	shipArray shipTab;
 	ships myBoard;
 	int  userLives;
-	int  quantity5ships;// quantity of ships made of 5 blocks
-	int  quantity4ships;
-	int  quantity3ships;
-	int  quantity2ships;
-	int  quantity1ships;
+	int  quantityShips[5]{};// quantity of ships of each index is another 
 	bool automaticShips;// if true your ships would be placed randomly on board, always true for comp
 	bool automaticSpotsAroundShip;// if true when you will destroy enemy's ship it will surrounded by dots, always true for comp
 public:
@@ -23,8 +19,9 @@ public:
 	bool wasLastShotHit() const { return LastShotHit; }
 	void setLives();///count lives of all of user ships
 	void liveCheck() const;/// game ender
- void addShip();/// user adds a ship
+	void addShips();/// user adds all ships to the game bas
 	void hit();///user hit a ship
-	
+	void testing();
+
 };
 

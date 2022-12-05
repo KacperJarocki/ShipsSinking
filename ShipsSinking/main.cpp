@@ -8,9 +8,13 @@
 
 int main()
 {
-	
+	player gamer;
 
-	std::cout << "czekaj";
+
+	gamer.addShips();
+	gamer.testing();
+
+
 	
 
 }

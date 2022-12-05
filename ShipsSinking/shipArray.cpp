@@ -11,7 +11,7 @@ void shipArray::addShipToArray(ship& ship)
 	countOfShips++;
 }
 
-int shipArray::countOfLives()
+int shipArray::countOfLives() const
 {
 if(countOfShips == 0)return 0;
 	
@@ -25,16 +25,37 @@ if(countOfShips == 0)return 0;
 	return suma;
 }
 
-ship shipArray::findAShip(int x, int y)
+int shipArray::findAShip(int x, int y) const
 {
 	ship checkedShip;
+	int addres=-1;
 	for(int i = 0;i<countOfShips;i++)
 	{
 		checkedShip = arrayOfShips[i];
 		if (checkedShip.isThisShipHere(x,y))
 		{
+			addres = i;
 			break;
 		}
 	}
-	return checkedShip;
+	return addres;
 }
+
+void shipArray::minusOneLive(int x, int y)
+{
+	ship hittedShip;
+	int addres;
+	addres = findAShip(x, y);
+	hittedShip = arrayOfShips[addres];
+	hittedShip.oneLiveDown();
+	arrayOfShips[addres] = hittedShip;
+	
+}
+
+int shipArray::specificLives(int index) const
+{
+	ship shipL;
+	shipL = arrayOfShips[index];
+	return shipL.getLive();
+}
+

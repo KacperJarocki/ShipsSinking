@@ -28,15 +28,17 @@ bool ships::canIPlaceShip(int x, int y, int rzad, int miejsca  ) const
  todo:dodac ship::where w odpowiednie miejsce w add ship to game
  
  */
-void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
+void ships::addShipToGame(shipArray& shipTab,int maszty)///bezpieczne dodanie statku ze sprawdzeniami
 {
-	int x, y, maszty;
+	int x=-1, y = -1;
 	ship shipToAdd;
+
+		std::cout << "podaj x , y, a nastepnie ilu masztowy jest to statek\n";
+		std::cin >>  x;
+		std::cin >>  y;
+
 	
-	std::cout << "podaj x , y, a nastepnie ilu masztowy jest to statek\n";
-	std::cin >> x;
-	std::cin >> y;
-	std::cin >> maszty;
+	
 	shipToAdd.setMasztAndLives(maszty);
 	
 	
@@ -46,7 +48,7 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 		if (positions[x-1][y-1]==1)
 		{
 			std::cout << "ju¿ jest tam statek\n";
-			addShipToGame();
+			addShipToGame(shipTab, maszty);
 		}
 		if (positions[x-1][y-1] == 0)
 		{
@@ -63,11 +65,12 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 						{
 							addLongShip(x, y, maszty, shipToAdd);
 						}
+						shipTab.addShipToArray(shipToAdd);
 					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
-						addShipToGame();
+						addShipToGame(shipTab, maszty);
 					}
 					return;
 				}
@@ -80,11 +83,12 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 						{
 							addLongShip(x, y, maszty, shipToAdd);
 						}
+						shipTab.addShipToArray(shipToAdd);
 					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
-						addShipToGame();
+						addShipToGame(shipTab, maszty);
 					}
 
 					return;
@@ -98,12 +102,14 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 						{
 							addLongShip(x, y, maszty, shipToAdd);
 						}
+						shipTab.addShipToArray(shipToAdd);
 					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
-						addShipToGame();
+						addShipToGame(shipTab, maszty);
 					}
+					shipTab.addShipToArray(shipToAdd);
 
 					return;
 
@@ -117,11 +123,12 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 						{
 							addLongShip(x, y, maszty, shipToAdd);
 						}
+						shipTab.addShipToArray(shipToAdd);
 					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
-						addShipToGame();
+						addShipToGame(shipTab, maszty);
 					}
 
 					return;
@@ -135,11 +142,12 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 						{
 							addLongShip(x, y, maszty, shipToAdd);
 						}
+						shipTab.addShipToArray(shipToAdd);
 					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
-						addShipToGame();
+						addShipToGame(shipTab, maszty);
 					}
 
 					return;
@@ -153,11 +161,12 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 						{
 							addLongShip(x, y, maszty, shipToAdd);
 						}
+						shipTab.addShipToArray(shipToAdd);
 					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
-						addShipToGame();
+						addShipToGame(shipTab, maszty);
 					}
 
 					return;
@@ -165,11 +174,18 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				if ((y == 0) && (x < 9))
 				{
 					if (canIPlaceShip(x - 1, y, 3, 2) == true)
-						addShip(x, y, shipToAdd);
+					{
+						if (maszty == 1)addShip(x, y, shipToAdd);
+						else
+						{
+							addLongShip(x, y, maszty, shipToAdd);
+						}
+						shipTab.addShipToArray(shipToAdd);
+					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
-						addShipToGame();
+						addShipToGame(shipTab, maszty);
 					}
 
 					return;
@@ -177,10 +193,18 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 				if (y == 9 && x < 9)
 				{
 					if (canIPlaceShip(x - 1, y - 1, 3, 2) == true)
-						addShip(x, y, shipToAdd);
+					{
+						if (maszty == 1)addShip(x, y, shipToAdd);
+						else
+						{
+							addLongShip(x, y, maszty, shipToAdd);
+						}
+						shipTab.addShipToArray(shipToAdd);
+					}
+					else
 					{
 						std::cout << "to wbrew zasada\n";
-						addShipToGame();
+						addShipToGame(shipTab, maszty);
 					}
 
 					return;
@@ -194,11 +218,12 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 						{
 							addLongShip(x, y, maszty, shipToAdd);
 						}
+						shipTab.addShipToArray(shipToAdd);
 					}
 					else
 					{
 						std::cout << "to wbrew zasada\n";
-						addShipToGame();
+						addShipToGame(shipTab, maszty);
 					}
 
 					return;
@@ -214,7 +239,7 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 	else
 	{
 		std::cout << "wyszedles poza pola gry albo ilosc masztow w twoim statku jest za duza\n";
-		addShipToGame();
+		addShipToGame(shipTab,maszty);
 	}		
 
 }
@@ -277,8 +302,9 @@ void ships::playerScreen() const
 	{
 		for (int j = 0; j < 10; j++)
 			std::cout << positions[i][j] << "\t";
+		std::cout << std::endl;
 	}
-	std::cout << std::endl;
+	
 }
 
 

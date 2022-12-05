@@ -12,11 +12,7 @@ computer::computer()
 	automaticSpotsAroundShip = true;
 	automaticShips = true;
 	wasFirstHit = false;
-	quantity1ships = 0;
-	quantity2ships = 0;
-	quantity3ships = 0;
-	quantity4ships = 0;
-	quantity5ships = 0;
+
 	deadlyHit = true;
 	right = false;
 	left = false;

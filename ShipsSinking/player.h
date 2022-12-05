@@ -6,6 +6,7 @@ class player :public user
 	bool win; // if true then player won
 public:
 	void addingPoints();
+	player();
 
 };
 
