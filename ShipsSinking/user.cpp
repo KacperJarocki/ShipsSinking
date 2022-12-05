@@ -1,6 +1,10 @@
 #include "user.h"
 
 
+void user::setLives()
+{
+
+}
 
 void user::liveCheck() const
 {
