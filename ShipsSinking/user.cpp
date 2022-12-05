@@ -3,7 +3,7 @@
 
 void user::setLives()
 {
- lives = shipTab.countOfLives();
+ userLives = shipTab.countOfLives();
 }
 
 void user::liveCheck() const
