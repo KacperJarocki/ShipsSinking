@@ -13,6 +13,8 @@ void shipArray::addShipToArray(ship& ship)
 
 int shipArray::countOfLives()
 {
+if(countOfShips == 0)return 0;
+	
 	int suma = 0;
 	ship shipToSum;
 	for (int i = 0; i < countOfShips; i++)
@@ -20,7 +22,7 @@ int shipArray::countOfLives()
 		shipToSum = arrayOfShips[i];
 		suma = suma + shipToSum.getLive();
 	}
-	return 0;
+	return suma;
 }
 
 ship shipArray::findAShip(int x, int y)
