@@ -45,7 +45,7 @@ void ships::addShipToGame()///bezpieczne dodanie statku ze sprawdzeniami
 		
 		if (positions[x-1][y-1]==1)
 		{
-			std::cout << "ju¿ jest tam statek\n";
+			std::cout << "juÂ¿ jest tam statek\n";
 			addShipToGame();
 		}
 		if (positions[x-1][y-1] == 0)
@@ -275,7 +275,6 @@ void ships::playerScreen() const
 	std::cout << "kolejna tura\n";
 	for (int i = 0; i < 10; i++)
 	{
-		std::cout << "\n";
 		for (int j = 0; j < 10; j++)
 			std::cout << positions[i][j] << "\t";
 	}
