@@ -21,7 +21,7 @@ public:
 	bool ifAutomaticShips() const{return automaticShips;}
 	bool ifAutomaticSpotsAroundShip() const { return automaticSpotsAroundShip;}\
 	bool wasLastShotHit() const { return LastShotHit; }
-	void setLives() const;
+	void setLives();///count lives of all of user ships
 	void liveCheck() const;/// game ender
  void addShip();/// user adds a ship
 	void hit();///user hit a ship
