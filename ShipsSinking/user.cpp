@@ -25,8 +25,54 @@ void user::addShips()
 	}
 }
 
+void user::hit(int x, int y)
+{
+
+	if(RUCOmputer == false)
+	{
+		std::cin >> x;
+		std::cin >> y;
+	}
+	if(x>0 && x<11 && y>0 && y < 11)
+	{
+		LastShotHit = myBoard.hit(x, y);
+		if(LastShotHit == true)
+		{
+			if (shipTab.wasItDeadlyShot(x,y))
+			{
+				deadlyHit = shipTab.wasItDeadlyShot(x,y);
+				std::cout << "trafiony zatopiony";
+				if (ifAutomaticSpotsAroundShip() == true)
+					spotsAroundShip();
+			}
+		}
+	}
+	else
+	{
+		std::cout << "poza tablica";
+		hit(0, 0);
+	}
+
+
+}
+
+
 void user::testing()
 {
 	setLives();
 	std::cout << userLives;
+}
+
+int user::getLives() const
+{
+	return userLives;
+}
+
+void user::spotsAroundShip()
+{
+}
+
+void user::automaticShipsPlacer()
+{
+	
 }

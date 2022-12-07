@@ -7,6 +7,7 @@ class player :public user
 public:
 	void addingPoints();
 	player();
+	
 
 };
 

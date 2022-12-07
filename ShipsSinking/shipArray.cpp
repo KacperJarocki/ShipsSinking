@@ -59,3 +59,11 @@ int shipArray::specificLives(int index) const
 	return shipL.getLive();
 }
 
+bool shipArray::wasItDeadlyShot(int x, int y)
+{
+	minusOneLive(x, y);
+	if (specificLives(findAShip(x, y)) == 0)
+		return true;
+	return false;
+}
+

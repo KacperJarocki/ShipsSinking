@@ -25,10 +25,6 @@ bool ships::canIPlaceShip(int x, int y, int rzad, int miejsca  ) const
 }
 
 
-/**
- todo:dodac ship::where w odpowiednie miejsce w add ship to game
- 
- */
 void ships::addShipToGame(shipArray& shipTab,int maszty)///bezpieczne dodanie statku ze sprawdzeniami
 {
 	int x=-1, y = -1;
@@ -179,7 +175,6 @@ void ships::addLongShip(int x,int y,int maszty,ship& shipToAdd)
 		std::cin >> whichWay;
 
 		if ((whichWay == 'p' && prawo==true) || (whichWay == 'd' && dol ==true) || ( whichWay == 'g' && gora == true)||(whichWay == 'l' && lewo == true))break;
-
 		else std::cout << "kliknij prawidlowa opcje\n";
 	}
 	std::cout << lewo<<"\n";

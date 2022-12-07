@@ -5,6 +5,8 @@
 class user
 {
 protected:
+	int deadlyHit;
+	bool RUCOmputer;
 	bool LastShotHit;//true if last shot was succesful false otherwise
 	shipArray shipTab;
 	ships myBoard;
@@ -15,13 +17,17 @@ protected:
 public:
 	//todo: napisac metody: odejmowanie zycia shiptab, zastanowic sie czego brakuje.
 	bool ifAutomaticShips() const{return automaticShips;}
-	bool ifAutomaticSpotsAroundShip() const { return automaticSpotsAroundShip;}\
+	bool ifAutomaticSpotsAroundShip() const { return automaticSpotsAroundShip;}
 	bool wasLastShotHit() const { return LastShotHit; }
+	bool wasItDeadly() const { return deadlyHit; }
 	void setLives();///count lives of all of user ships
 	void liveCheck() const;/// game ender
 	void addShips();/// user adds all ships to the game bas
-	void hit(int x, int y);///user hit a ship
+	void hit(int x,int y);///user hit a ship
 	void testing();
+	int getLives() const;
+	void spotsAroundShip();
+	void automaticShipsPlacer();
 
 };
 
