@@ -18,7 +18,8 @@ bool ships::canIPlaceShip(int x, int y, int rzad, int miejsca  ) const
 {
 	for (int i = x; i < rzad + x; i++)
 		for (int j = y; j < miejsca + y; j++)
-			if (positions[i][j] == 1)
+			if((i&&j)>-1 && (i&&j)<10)
+				if (positions[i][j] == 1)
 				return false;
 	return true;
 }
