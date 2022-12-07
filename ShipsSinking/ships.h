@@ -10,7 +10,7 @@ public:
 	void addShipToGame(shipArray &shipTab,int maszty);
 	void clearPositions();
 	void addShip(int x, int y,ship& ship);
-	void hit(int x,int y);
+	bool hit(int x,int y);///returns true if ship was hitted
 	void playerScreen() const;
 	void addLongShip(int x, int y, int maszty, ship& shipToAdd);
 	bool canIPlaceShip(int x, int y, int kwadrat,int miejsca) const;
