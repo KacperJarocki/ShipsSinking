@@ -20,7 +20,7 @@ public:
 	void setLives();///count lives of all of user ships
 	void liveCheck() const;/// game ender
 	void addShips();/// user adds all ships to the game bas
-	void hit();///user hit a ship
+	void hit(int x, int y);///user hit a ship
 	void testing();
 
 };
