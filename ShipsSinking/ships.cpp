@@ -273,21 +273,22 @@ void ships::addShip(int x, int y,ship &p)
  checks if there is any ship at given coordinates
  todo: napisac metode hit z zabezpieczeniami
  */
-void ships::hit(int x, int y)
+bool ships::hit(int x, int y)
 {
 	int hitted = 2, missed = 3;
 	
 	if (positions[x-1][y-1] == 1)
 	{
 		positions[x-1][y-1] = hitted;
-
-		std::cout<<"u got a hit"<<std::endl;
+	return true
+	std::cout<<"u got a hit"<<std::endl;
 		
 	}
 	else
 	{
 		positions[x-1][y-1] = missed;
 		std::cout << "u missed" << std::endl;
+ return false
 	}
 	playerScreen();
 }
