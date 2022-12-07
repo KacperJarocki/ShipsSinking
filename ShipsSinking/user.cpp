@@ -21,6 +21,7 @@ void user::addShips()
 	{
 		for (int j = 0; j < quantityShips[i]; j++)
 			myBoard.addShipToGame(shipTab, i+1);
+		myBoard.playerScreen();
 	}
 }
 

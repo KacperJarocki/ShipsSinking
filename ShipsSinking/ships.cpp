@@ -18,9 +18,9 @@ bool ships::canIPlaceShip(int x, int y, int rzad, int miejsca  ) const
 {
 	for (int i = x; i < rzad + x; i++)
 		for (int j = y; j < miejsca + y; j++)
-			if((i&&j)>-1 && (i&&j)<10)
+			if(i>-1 && i<10 && j>-1 && j < 10)
 				if (positions[i][j] == 1)
-				return false;
+					return false;
 	return true;
 }
 
@@ -34,7 +34,7 @@ void ships::addShipToGame(shipArray& shipTab,int maszty)///bezpieczne dodanie st
 	int x=-1, y = -1;
 	ship shipToAdd;
 
-		std::cout << "podaj x , y, a nastepnie ilu masztowy jest to statek\n";
+	std::cout << "podaj x , y a ten statek ma "<<maszty<<" masztow\n";
 		std::cin >>  x;
 		std::cin >>  y;
 
@@ -45,7 +45,6 @@ void ships::addShipToGame(shipArray& shipTab,int maszty)///bezpieczne dodanie st
 	
 	if (ifOutsideOfArrey(x, y, maszty) == false)
 	{
-		
 		if (positions[x-1][y-1]==1)
 		{
 			std::cout << "ju¿ jest tam statek\n";
@@ -55,185 +54,21 @@ void ships::addShipToGame(shipArray& shipTab,int maszty)///bezpieczne dodanie st
 		{
 			x = x - 1;
 			y = y - 1;
-			
-			 ///dodawanie pierwszego pola lub jednego masztu
-				if (x == 0 && y == 0)
+			if (canIPlaceShip(x-1, y-1, 3, 3) == true)
+			{
+				if (maszty == 1)addShip(x, y, shipToAdd);
+				else
 				{
-					if (canIPlaceShip(x, y, 2, 2) == true)
-					{
-						if (maszty == 1)addShip(x, y, shipToAdd);
-						else
-						{
-							addLongShip(x, y, maszty, shipToAdd);
-						}
-						shipTab.addShipToArray(shipToAdd);
-					}
-					else
-					{
-						std::cout << "to wbrew zasada\n";
-						addShipToGame(shipTab, maszty);
-					}
-					return;
+					addLongShip(x, y, maszty, shipToAdd);
 				}
-				if ((x == 0) && (y == 9))
-				{
-					if (canIPlaceShip(0, 8, 2, 2) == true)
-					{
-						if (maszty == 1)addShip(x, y, shipToAdd);
-						else
-						{
-							addLongShip(x, y, maszty, shipToAdd);
-						}
-						shipTab.addShipToArray(shipToAdd);
-					}
-					else
-					{
-						std::cout << "to wbrew zasada\n";
-						addShipToGame(shipTab, maszty);
-					}
-
-					return;
-				}
-				if ((x == 9) && (y == 0))
-				{
-					if (canIPlaceShip(8, y, 2, 2) == true)
-					{
-						if (maszty == 1)addShip(x, y, shipToAdd);
-						else
-						{
-							addLongShip(x, y, maszty, shipToAdd);
-						}
-						shipTab.addShipToArray(shipToAdd);
-					}
-					else
-					{
-						std::cout << "to wbrew zasada\n";
-						addShipToGame(shipTab, maszty);
-					}
-					shipTab.addShipToArray(shipToAdd);
-
-					return;
-
-				}
-				if ((x == 9) && (y == 9))
-				{
-					if (canIPlaceShip(8, 8, 2, 2) == true)
-					{
-						if (maszty == 1)addShip(x, y, shipToAdd);
-						else
-						{
-							addLongShip(x, y, maszty, shipToAdd);
-						}
-						shipTab.addShipToArray(shipToAdd);
-					}
-					else
-					{
-						std::cout << "to wbrew zasada\n";
-						addShipToGame(shipTab, maszty);
-					}
-
-					return;
-				}
-				if ((x == 0) && (y < 9))
-				{
-					if (canIPlaceShip(x, y - 1, 2, 3) == true)
-					{
-						if (maszty == 1)addShip(x, y, shipToAdd);
-						else
-						{
-							addLongShip(x, y, maszty, shipToAdd);
-						}
-						shipTab.addShipToArray(shipToAdd);
-					}
-					else
-					{
-						std::cout << "to wbrew zasada\n";
-						addShipToGame(shipTab, maszty);
-					}
-
-					return;
-				}
-				if ((x == 9) && (y < 9))
-				{
-					if (canIPlaceShip(x - 1, y - 1, 2, 3) == true)
-					{
-						if (maszty == 1)addShip(x, y, shipToAdd);
-						else
-						{
-							addLongShip(x, y, maszty, shipToAdd);
-						}
-						shipTab.addShipToArray(shipToAdd);
-					}
-					else
-					{
-						std::cout << "to wbrew zasada\n";
-						addShipToGame(shipTab, maszty);
-					}
-
-					return;
-				}
-				if ((y == 0) && (x < 9))
-				{
-					if (canIPlaceShip(x - 1, y, 3, 2) == true)
-					{
-						if (maszty == 1)addShip(x, y, shipToAdd);
-						else
-						{
-							addLongShip(x, y, maszty, shipToAdd);
-						}
-						shipTab.addShipToArray(shipToAdd);
-					}
-					else
-					{
-						std::cout << "to wbrew zasada\n";
-						addShipToGame(shipTab, maszty);
-					}
-
-					return;
-				}
-				if (y == 9 && x < 9)
-				{
-					if (canIPlaceShip(x - 1, y - 1, 3, 2) == true)
-					{
-						if (maszty == 1)addShip(x, y, shipToAdd);
-						else
-						{
-							addLongShip(x, y, maszty, shipToAdd);
-						}
-						shipTab.addShipToArray(shipToAdd);
-					}
-					else
-					{
-						std::cout << "to wbrew zasada\n";
-						addShipToGame(shipTab, maszty);
-					}
-
-					return;
-				}
-				if (x > 0 && x < 9 && y>0 && y < 9)
-				{
-					if (canIPlaceShip(x - 1, y - 1, 3, 3) == true)
-					{
-						if(maszty == 1)addShip(x, y, shipToAdd);
-						else
-						{
-							addLongShip(x, y, maszty, shipToAdd);
-						}
-						shipTab.addShipToArray(shipToAdd);
-					}
-					else
-					{
-						std::cout << "to wbrew zasada\n";
-						addShipToGame(shipTab, maszty);
-					}
-
-					return;
-				}
-			
-				
-			
-
-
+				shipTab.addShipToArray(shipToAdd);
+			}
+			else
+			{
+				std::cout << "to wbrew zasada\n";
+				addShipToGame(shipTab, maszty);
+			}
+			return;
 		}
 		
 	}
@@ -266,7 +101,7 @@ void ships::addShip(int x, int y,ship &p)
 	p.setWhere(x, y);
 	//sum++;
 	
-	playerScreen();
+	
 }
 
 /**
@@ -280,7 +115,7 @@ bool ships::hit(int x, int y)
 	if (positions[x-1][y-1] == 1)
 	{
 		positions[x-1][y-1] = hitted;
-	return true
+		return true;
 	std::cout<<"u got a hit"<<std::endl;
 		
 	}
@@ -288,7 +123,7 @@ bool ships::hit(int x, int y)
 	{
 		positions[x-1][y-1] = missed;
 		std::cout << "u missed" << std::endl;
- return false
+		return false;
 	}
 	playerScreen();
 }
@@ -319,10 +154,8 @@ void ships::addLongShip(int x,int y,int maszty,ship& shipToAdd)
 						/// up
 	if (x >= maszty -1)
 	{
-		if(canIPlaceShip(x-maszty-1,y-1,maszty, 3)==true)gora = true;
-		
+		if(canIPlaceShip(x-maszty,y-1,maszty, 3)==true)gora = true;
 	}
-
 
 						/// down
 	if(x+maszty<11)
