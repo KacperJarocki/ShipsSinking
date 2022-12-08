@@ -13,6 +13,7 @@ public:
 	void minusOneLive(int x, int y);
 	int specificLives(int index) const;
 	bool wasItDeadlyShot(int x, int y) ;
+	void clearArray();
 	
 
 };

@@ -12,12 +12,17 @@ computer::computer()
 	automaticSpotsAroundShip = true;
 	automaticShips = true;
 	wasFirstHit = false;
-
+	RUCOmputer = true;
 	deadlyHit = true;
 	right = false;
 	left = false;
 	up = false;
 	down = false;
+	quantityShips[0] = 3;
+	quantityShips[1] = 3;
+	quantityShips[2] = 2;
+	quantityShips[3] = 2;
+	quantityShips[4] = 1;
 	
 	
 }
@@ -25,16 +30,8 @@ computer::computer()
 void computer::nextTarget()
 {
 	int range =10;
-	if(wasFirstHit == false || deadlyHit == true  )
-	{
+
 		nextX = std::rand() % range;
 		nextY = std::rand() % range;
-		deadlyHit = false;
-		return;
-	}
-	if(wasFirstHit == true && deadlyHit == false)
-	{
-	
-	}
-
+		
 }

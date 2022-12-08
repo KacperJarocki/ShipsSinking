@@ -3,6 +3,13 @@
 //tem sol
 player::player()
 {
-	for (int i = 0; i < 5; i++)
-		quantityShips[i] = 1;
+	RUCOmputer = false;
+	quantityShips[0] = 3;
+		quantityShips[1] = 3;
+		quantityShips[2] = 2;
+		quantityShips[3] = 2;
+		quantityShips[4] = 1;
+
+
+
 }

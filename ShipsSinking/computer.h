@@ -4,6 +4,7 @@
 
 class computer :public user
 {
+	
 	int firstX;// first hit
 	int firstY;
 	int lastX;// last shot

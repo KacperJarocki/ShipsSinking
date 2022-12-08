@@ -11,7 +11,7 @@ public:
 	bool isThisShipHere(int x,int y) const;
 	void oneLiveDown();// after getting hit deletes live
 	bool wasItKillShot() const;/// checks if shot destroy ship
-	int getLive() const; 
+	int getLive() const;
 
 
 };

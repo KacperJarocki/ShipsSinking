@@ -67,3 +67,13 @@ bool shipArray::wasItDeadlyShot(int x, int y)
 	return false;
 }
 
+void shipArray::clearArray()
+{
+	ship clear;
+	for(int i = 0;i< countOfShips;i++)
+	{
+		arrayOfShips[i] = clear;
+	}
+}
+
+

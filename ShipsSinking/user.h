@@ -15,7 +15,6 @@ protected:
 	bool automaticShips;// if true your ships would be placed randomly on board, always true for comp
 	bool automaticSpotsAroundShip;// if true when you will destroy enemy's ship it will surrounded by dots, always true for comp
 public:
-	//todo: napisac metody: odejmowanie zycia shiptab, zastanowic sie czego brakuje.
 	bool ifAutomaticShips() const{return automaticShips;}
 	bool ifAutomaticSpotsAroundShip() const { return automaticSpotsAroundShip;}
 	bool wasLastShotHit() const { return LastShotHit; }
@@ -27,7 +26,10 @@ public:
 	void testing();
 	int getLives() const;
 	void spotsAroundShip();
-	void automaticShipsPlacer();
+	bool AutomaticAddShips();
+	void showTheBoard()const;
+
+	
 
 };
 
