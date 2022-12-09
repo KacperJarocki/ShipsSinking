@@ -6,6 +6,12 @@ ship::ship()
 	lives = 0;
 }
 
+bool ship::PoziomCzyPion() 
+{
+	setShip();
+	if (where[x + 1][y] == 1)return false;
+	else return true;
+}
 void ship::setMasztAndLives(int maszty)
 {
 	maszt = maszty;
@@ -39,3 +45,18 @@ int ship::getLive() const
 {
 	return lives;
 }
+
+void ship::setShip()
+{
+	for (int i = 0; i < 10; i++)
+		for (int j = 0; j < 10; j++)
+			if(where[i][j]==1)
+			{
+				x = i;
+				y = j;
+				return;
+			}
+	
+}
+
+

@@ -17,4 +17,5 @@ public:
 	void enemyScreen() const;
 	bool AutomaticAddShipToGame(shipArray& shipTab, int maszty,int x,int y);
 	bool AutomaticAddLongShip(int x, int y, int maszty, ship& shipToAdd);
+	void spotting(int x, int y, int kwadrat, int miejsca);
 };

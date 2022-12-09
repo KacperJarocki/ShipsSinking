@@ -76,4 +76,42 @@ void shipArray::clearArray()
 	}
 }
 
+int shipArray::getHeadXofShip(int x, int y) const
+{
+	int addres;
+	ship shipKilled;
+	addres = findAShip(x, y);
+	shipKilled = arrayOfShips[addres];
+	return shipKilled.getHeadXofShip();
+}
+
+int shipArray::getHeadYofShip(int x, int y) const
+{
+	int addres;
+	ship shipKilled;
+	addres = findAShip(x, y);
+	shipKilled = arrayOfShips[addres];
+	return shipKilled.getHeadYofShip();
+}
+
+bool shipArray::czyPoziom(int x, int y) const
+{
+	int addres;
+	ship shipKilled;
+	addres = findAShip(x, y);
+	shipKilled = arrayOfShips[addres];
+	return shipKilled.PoziomCzyPion();
+}
+
+
+
+int shipArray::getMasztyShip(int x, int y) const
+{
+	int addres;
+	ship shipKilled;
+	addres = findAShip(x, y);
+	shipKilled = arrayOfShips[addres];
+	return shipKilled.getMaszt();
+}
+
 

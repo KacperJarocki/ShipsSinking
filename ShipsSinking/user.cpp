@@ -28,9 +28,8 @@ void user::addShips()
 	setLives();
 }
 
-void user::hit(int x, int y)
+bool user::hit(int x, int y)
 {
-
 	if(RUCOmputer == true)
 	{
 		std::cout << "podaj x nastepnie y\n";
@@ -53,8 +52,11 @@ void user::hit(int x, int y)
 			{
 				deadlyHit = shipTab.wasItDeadlyShot(x,y);
 				std::cout << "trafiony zatopiony\n";
-				if (ifAutomaticSpotsAroundShip() == true)
-					spotsAroundShip();
+				if (automaticShips == true)
+				{
+					spotsAroundShip(x, y);
+					std::cout << "lapiemy ifa\n";
+				}
 			}
 		}
 		setLives();
@@ -62,7 +64,7 @@ void user::hit(int x, int y)
 	else
 	{
 		std::cout << "poza tablica\n";
-		hit(0, 0);
+		return false;
 	}
 	if (RUCOmputer == false)
 		myBoard.playerScreen();
@@ -70,6 +72,8 @@ void user::hit(int x, int y)
 	{
 		myBoard.enemyScreen();
 	}
+	return true;
+
 
 }
 
@@ -85,8 +89,34 @@ int user::getLives() const
 	return userLives;
 }
 
-void user::spotsAroundShip()
+void user::spotsAroundShip(int x,int y)
 {
+	bool way;
+	int headX, headY,maszty;
+	maszty = shipTab.getMasztyShip(x, y);
+	way = shipTab.czyPoziom(x, y);
+	headX = shipTab.getHeadXofShip(x,y);
+	headY = shipTab.getHeadYofShip(x,y);
+	if(maszty == 1)
+	{
+		myBoard.spotting(headX - 1, headY - 1, 3, 3);
+		std::cout << "powinnow sie wyswietlic 1";
+	}
+	else if(way == false)
+	{
+		myBoard.spotting(headX - 1, headY - 1, maszty + 2, 3);
+		std::cout << "powinnow sie wyswietlic dol";
+	}
+	else
+	{
+		myBoard.spotting(headX - 1, headY - 1, 3, maszty + 2);
+		std::cout << "powinnow sie wyswietlic bok";
+}
+	
+
+
+
+	
 }
 
 bool user::AutomaticAddShips()

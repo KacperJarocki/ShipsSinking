@@ -44,6 +44,9 @@ void ships::enemyScreen() const
 			case 3:
 				std::cout << "*" << "\t";
 				break;
+			case 4:
+				std::cout << "O" << "\t";
+				break;
 			}
 		std::cout << std::endl;
 	}
@@ -160,6 +163,17 @@ bool ships::AutomaticAddLongShip(int x, int y, int maszty, ship& shipToAdd)
 	return true;
 }
 
+void ships::spotting(int x, int y, int kwadrat, int miejsca)
+{
+	for (int i = x; i < kwadrat + x; i++)
+		for (int j = y; j < miejsca + y; j++)
+			if (i > -1 && i<10 && j>-1 && j < 10)
+				if (positions[i][j] == 0)
+						positions[i][j] = 4;
+					
+	
+}
+
 
 bool ships::addShipToGame(shipArray& shipTab,int maszty)///bezpieczne dodanie statku ze sprawdzeniami
 {
@@ -192,6 +206,7 @@ bool ships::addShipToGame(shipArray& shipTab,int maszty)///bezpieczne dodanie st
 				if (maszty == 1)
 				{
 					addShip(x, y, shipToAdd);
+					shipToAdd.setShip();
 					return true;
 				}
 				else
@@ -235,9 +250,7 @@ void ships::clearPositions()// raczej nie potrzebne do weryfikacji
 			positions[i][j] = 0;
 }
 
-/**
-todo: poprawic player screen
- */
+
 void ships::addShip(int x, int y,ship &p)
 {	
 	
@@ -255,8 +268,13 @@ bool ships::hit(int x, int y)
 	
 	if (positions[x][y] == 1)
 	{
-		positions[x-1][y-1] = hitted;
+		positions[x][y] = hitted;
 		return true;
+	}
+	if(positions[x][y] == missed)
+	{
+		std::cout << "you already shot there";
+		return false;
 	}
 	else
 	{
@@ -264,6 +282,7 @@ bool ships::hit(int x, int y)
 		std::cout << "u missed" << std::endl;
 		return false;
 	}
+
 }
 
 /**
@@ -281,6 +300,9 @@ void ships::playerScreen() const
 				case 0:
 				std::cout << "-" << "\t";
 				break;
+				case 4:
+					std::cout << "-" << "\t";
+					break;
 				case 1:
 					std::cout << "[]" << "\t";
 					break;
@@ -344,18 +366,22 @@ bool ships::addLongShip(int x,int y,int maszty,ship& shipToAdd)
 	case 'p':
 		for (int i = 0; i < maszty; i++)
 			addShip(x, y + i, shipToAdd);
+		shipToAdd.setShip();
 		break;
 	case 'd':
 		for (int i = 0; i < maszty; i++)
 			addShip(x + i, y, shipToAdd);
+		shipToAdd.setShip();
 		break;
 	case 'g':
 		for (int i = 0; i < maszty; i++)
 			addShip(x - i, y, shipToAdd);
+		shipToAdd.setShip();
 		break; 
 	case 'l':
 		for (int i = 0; i < maszty; i++)
 			addShip(x, y - i, shipToAdd);
+		shipToAdd.setShip();
 		break;
 	case 'c':
 		return false;

@@ -22,10 +22,10 @@ public:
 	void setLives();///count lives of all of user ships
 	void liveCheck() const;/// game ender
 	void addShips();/// user adds all ships to the game bas
-	void hit(int x,int y);///user hit a ship
+	bool hit(int x,int y);///user hit a ship,true if coordinates are good
 	void testing();
 	int getLives() const;
-	void spotsAroundShip();
+	void spotsAroundShip(int x, int y);
 	bool AutomaticAddShips();
 	void showTheBoard()const;
 

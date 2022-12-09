@@ -14,6 +14,10 @@ public:
 	int specificLives(int index) const;
 	bool wasItDeadlyShot(int x, int y) ;
 	void clearArray();
+	int getHeadXofShip(int x,int y)const;
+	int getHeadYofShip(int x, int y)const;  
+	bool czyPoziom(int x, int y) const;
+	int getMasztyShip(int x, int y)const;
 	
 
 };
