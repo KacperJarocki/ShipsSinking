@@ -7,6 +7,7 @@ shipArray::shipArray()
 
 void shipArray::addShipToArray(ship& ship)
 {
+	ship.setShip();
 	arrayOfShips[countOfShips] = ship;
 	countOfShips++;
 }

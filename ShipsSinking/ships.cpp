@@ -165,12 +165,16 @@ bool ships::AutomaticAddLongShip(int x, int y, int maszty, ship& shipToAdd)
 
 void ships::spotting(int x, int y, int kwadrat, int miejsca)
 {
+	
 	for (int i = x; i < kwadrat + x; i++)
 		for (int j = y; j < miejsca + y; j++)
-			if (i > -1 && i<10 && j>-1 && j < 10)
-				if (positions[i][j] == 0)
-						positions[i][j] = 4;
-					
+			if(i > -1 && i < 10 && j>-1 && j < 10)
+				if(positions[i][j] == 0)
+				{
+					std::cout << "ustawiona 4\n";
+					positions[i][j] = 4;
+				}
+				
 	
 }
 

@@ -8,7 +8,7 @@ ship::ship()
 
 bool ship::PoziomCzyPion() 
 {
-	setShip();
+	
 	if (where[x + 1][y] == 1)return false;
 	else return true;
 }

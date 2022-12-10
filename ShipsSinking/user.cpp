@@ -55,7 +55,7 @@ bool user::hit(int x, int y)
 				if (automaticShips == true)
 				{
 					spotsAroundShip(x, y);
-					std::cout << "lapiemy ifa\n";
+					
 				}
 			}
 		}
@@ -97,6 +97,8 @@ void user::spotsAroundShip(int x,int y)
 	way = shipTab.czyPoziom(x, y);
 	headX = shipTab.getHeadXofShip(x,y);
 	headY = shipTab.getHeadYofShip(x,y);
+	std::cout << headX;
+	std::cout << headY;
 	if(maszty == 1)
 	{
 		myBoard.spotting(headX - 1, headY - 1, 3, 3);
