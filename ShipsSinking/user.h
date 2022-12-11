@@ -5,7 +5,7 @@
 class user
 {
 protected:
-	int deadlyHit;
+	bool deadlyHit;
 	bool RUCOmputer;
 	bool LastShotHit;//true if last shot was succesful false otherwise
 	shipArray shipTab;
@@ -15,6 +15,8 @@ protected:
 	bool automaticShips;// if true your ships would be placed randomly on board, always true for comp
 	bool automaticSpotsAroundShip;// if true when you will destroy enemy's ship it will surrounded by dots, always true for comp
 public:
+	user();
+	bool didHitKill() const { return deadlyHit; }
 	bool ifAutomaticShips() const{return automaticShips;}
 	bool ifAutomaticSpotsAroundShip() const { return automaticSpotsAroundShip;}
 	bool wasLastShotHit() const { return LastShotHit; }
@@ -28,7 +30,8 @@ public:
 	void spotsAroundShip(int x, int y);
 	bool AutomaticAddShips();
 	void showTheBoard()const;
-
+	bool didHit(int x, int y)const;
+	
 	
 
 };

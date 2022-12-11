@@ -14,13 +14,14 @@ int main()
 	srand(time(0));
 	player gamer;
 	computer enemy;
-	char nextMove;
+	std::string nextMove;
 	
 	int nowaTura = 1;
 
 	//faza 1 rozstawienie statkow
 	while (gamer.AutomaticAddShips() == false);
 	while (enemy.AutomaticAddShips() == false);
+	
 	//faza 2 gra
 	while (gamer.getLives() > 0 || enemy.getLives() > 0)
 	{
@@ -29,12 +30,12 @@ int main()
 		std::cout << "przeciwnik oddal strzal w nastepujace koordynaty\t"<<enemy.showNextX()+1<<"\t"<<enemy.showNextY()+1<<"\n";
 		gamer.showTheBoard();
 		enemy.showTheBoard();
-		enemy.hit(0, 0);
+		while (enemy.hit(0, 0) == false)
 		while (true)
 		{
 			std::cout << "wcisnij k aby kontynuowac rozgrywke\n";
 			std::cin >> nextMove;
-			if (nextMove == 'k')
+			if (nextMove == "k")
 			{
 				break;
 			}
@@ -45,33 +46,39 @@ int main()
 			
 			gamer.showTheBoard();
 			enemy.showTheBoard();
-			enemy.hit(0, 0);
+			while (enemy.hit(0, 0) == false)
 			while (true)
 			{
 				std::cout << "wcisnij k aby kontynuowac rozgrywke\n";
 				std::cin >> nextMove;
-				if (nextMove == 'k')
+				if (nextMove == "k")
 				{
 					break;
 				}
 			}
-		}
-		enemy.nextTarget();
-		while (gamer.hit(enemy.showNextX(), enemy.showNextY())==false)
-		{
-			enemy.nextTarget();
-			gamer.hit(enemy.showNextX(), enemy.showNextY());
-		}
-		
+		}	
+			enemy.nextTarget(gamer);
+			bool didcomputerhit = gamer.hit(enemy.showNextX(),enemy.showNextY());
+			while (didcomputerhit == false)
+			{
+				enemy.nextTarget(gamer);
+				didcomputerhit = gamer.hit(enemy.showNextX(), enemy.showNextY());
+				std::cout << "w petli zaplatani";
+			}
+	
+			
 		while (gamer.wasLastShotHit() == true)
-		{
-			enemy.nextTarget();
+			{
+			enemy.nextTarget(gamer);
 			while (gamer.hit(enemy.showNextX(), enemy.showNextY()) == false)
 			{
-				enemy.nextTarget();
-				gamer.hit(enemy.showNextX(), enemy.showNextY());
+				enemy.nextTarget(gamer);
 			}
-		}
+			}
+		
+		
+		
+		
 		nowaTura++;
 	}
 	

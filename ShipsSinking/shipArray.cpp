@@ -1,5 +1,14 @@
     #include "shipArray.h"
 
+void shipArray::copy(const shipArray& shiptab)
+{
+	countOfShips = shiptab.countOfShips;
+	for (int i = 0; i < shiptab.countOfShips; i++)
+	{
+		arrayOfShips[i] = shiptab.arrayOfShips[i];
+	}
+}
+
 shipArray::shipArray()
 {
 	countOfShips = 0;

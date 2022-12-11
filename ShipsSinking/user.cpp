@@ -1,6 +1,10 @@
 #include "user.h"
 
 
+user::user()
+{
+}
+
 void user::setLives()
 {
 	userLives = shipTab.countOfLives();
@@ -30,40 +34,46 @@ void user::addShips()
 
 bool user::hit(int x, int y)
 {
+	
+	
 	if(RUCOmputer == true)
 	{
 		std::cout << "podaj x nastepnie y\n";
 		std::cin >> x;
 		std::cin >> y;
+		x = x - 1;
+		y = y - 1;
 		
 	}
-	if(x>0 && x<11 && y>0 && y < 11)
+	if (x > -1 && x < 10 && y>-1 && y < 10)
 	{
-		if (RUCOmputer == true)
+
+		if (myBoard.canIshotThere(x, y) == true)
 		{
-			x = x - 1;
-			y = y - 1;
-		}
 		
 		LastShotHit = myBoard.hit(x, y);
-		if(LastShotHit == true)
+		if (LastShotHit == true)
 		{
-			if (shipTab.wasItDeadlyShot(x,y))
+			deadlyHit = shipTab.wasItDeadlyShot(x, y);
+			if (deadlyHit== true)
 			{
-				deadlyHit = shipTab.wasItDeadlyShot(x,y);
 				std::cout << "trafiony zatopiony\n";
 				if (automaticShips == true)
 				{
 					spotsAroundShip(x, y);
-					
+
 				}
 			}
 		}
 		setLives();
-	}
+		}
+		else
+		{
+			return false;
+		}
+	}	
 	else
 	{
-		std::cout << "poza tablica\n";
 		return false;
 	}
 	if (RUCOmputer == false)
@@ -169,5 +179,10 @@ void user::showTheBoard()const
 		myBoard.enemyScreen();
 	}
 
+}
+
+bool user::didHit(int x, int y) const
+{
+	return myBoard.didIHit(x,y);
 }
 

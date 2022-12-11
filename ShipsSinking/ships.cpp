@@ -170,13 +170,35 @@ void ships::spotting(int x, int y, int kwadrat, int miejsca)
 		for (int j = y; j < miejsca + y; j++)
 			if(i > -1 && i < 10 && j>-1 && j < 10)
 				if(positions[i][j] == 0)
-				{
-					std::cout << "ustawiona 4\n";
-					positions[i][j] = 4;
-				}
+						positions[i][j] = 4;
+
+
 				
 	
 }
+
+bool ships::didIHit(int x, int y) const
+{
+	if(positions[x][y] == 1)
+		return true;
+	return false;
+}
+
+
+void ships::copy(const ships& copy)
+{
+	for (int i = 0; i < 10; i++)
+		for (int j = 0; j < 10; j++)
+			positions[i][j] = copy.positions[i][j];
+}
+
+bool ships::canIshotThere(int x, int y) const
+{
+	if(positions[x][y]==2 || positions[x][y] == 3 || positions[x][y] == 4)
+		return false;
+	return true;
+}
+
 
 
 bool ships::addShipToGame(shipArray& shipTab,int maszty)///bezpieczne dodanie statku ze sprawdzeniami
@@ -247,7 +269,7 @@ bool ships::addShipToGame(shipArray& shipTab,int maszty)///bezpieczne dodanie st
 
 
 
-void ships::clearPositions()// raczej nie potrzebne do weryfikacji
+void ships::clearPositions()//clears the board
 {
 	for(int i = 0; i < 10; i++)
 		for (int j = 0; j < 10; j++)
@@ -268,16 +290,21 @@ void ships::addShip(int x, int y,ship &p)
 
 bool ships::hit(int x, int y)
 {
-	int hitted = 2, missed = 3;
+	int hitted = 2, missed = 3 ;
 	
 	if (positions[x][y] == 1)
 	{
 		positions[x][y] = hitted;
 		return true;
 	}
-	if(positions[x][y] == missed)
+	if(positions[x][y] == missed || positions[x][y] == hitted )
 	{
 		std::cout << "you already shot there";
+		return false;
+	}
+	if (positions[x][y]==4)
+	{
+		std::cout << "its spotted";
 		return false;
 	}
 	else
@@ -286,12 +313,9 @@ bool ships::hit(int x, int y)
 		std::cout << "u missed" << std::endl;
 		return false;
 	}
-
 }
 
-/**
- do poprawy
- */
+
 void ships::playerScreen() const
 
 {
