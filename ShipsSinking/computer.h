@@ -21,8 +21,9 @@ class computer :public user
 
 public:
 	computer();
-	void nextTarget(player &play);
+	void nextTarget(const player &play);
 	int showNextX() const{ return nextX; }
 	int showNextY()const{ return nextY; }
+	void copyTheShips(const player& play);
 };
 

@@ -72,7 +72,7 @@ int shipArray::specificLives(int index) const
 bool shipArray::wasItDeadlyShot(int x, int y)
 {
 	minusOneLive(x, y);
-	if (specificLives(findAShip(x, y)) == 0)
+	if (specificLives(findAShip(x, y)) < 1)
 		return true;
 	return false;
 }

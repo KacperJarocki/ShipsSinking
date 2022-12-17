@@ -21,12 +21,15 @@ void user::liveCheck() const
 
 void user::addShips()
 {
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		system("cls");
 		myBoard.playerScreen();
-		for (int j = 0; j < quantityShips[4-i]; j++)
-			while (myBoard.addShipToGame(shipTab, 5 - i) == false) { system("cls"); myBoard.playerScreen(); }
+		for (int j = 0; j < quantityShips[3 - i]; j++)
+		{
+			myBoard.playerScreen();
+			while (myBoard.addShipToGame(shipTab, i+2) == false);
+		}
 		
 	}
 	setLives();
@@ -111,19 +114,17 @@ void user::spotsAroundShip(int x,int y)
 	std::cout << headY;
 	if(maszty == 1)
 	{
-		myBoard.spotting(headX - 1, headY - 1, 3, 3);
-		std::cout << "powinnow sie wyswietlic 1";
+		myBoard.spotting(headX , headY , 3, 3);
 	}
 	else if(way == false)
 	{
 		myBoard.spotting(headX - 1, headY - 1, maszty + 2, 3);
-		std::cout << "powinnow sie wyswietlic dol";
+		
 	}
 	else
 	{
-		myBoard.spotting(headX - 1, headY - 1, 3, maszty + 2);
-		std::cout << "powinnow sie wyswietlic bok";
-}
+		myBoard.spotting(headX - 1, headY - 1, 3, maszty + 2);		
+	}
 	
 
 
@@ -134,9 +135,9 @@ void user::spotsAroundShip(int x,int y)
 bool user::AutomaticAddShips()
 {
 	int x, y;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		for (int j = 0; j < quantityShips[4 - i]; j++)
+		for (int j = 0; j < quantityShips[3 - i]; j++)
 		{
 			int licznikWstawianiaStatku = 0;
 			while (true)
@@ -147,7 +148,7 @@ bool user::AutomaticAddShips()
 				if(myBoard.AutomaticAddShipToGame(shipTab,5-i,x,y)==true)
 					break;
 				licznikWstawianiaStatku++;
-				if (licznikWstawianiaStatku > 1000000)
+				if (licznikWstawianiaStatku > 10000000)
 				{
 					
 					myBoard.clearPositions();
@@ -185,4 +186,53 @@ bool user::didHit(int x, int y) const
 {
 	return myBoard.didIHit(x,y);
 }
+
+void user::setAutomaticShip(const char m)
+{
+	if (m == 'y')
+	{
+		automaticShips = true;
+		return;
+	}
+	else
+	{
+		automaticShips = false;
+		return;
+	}
+	
+}
+
+void user::setAutomaticSpotting(const char m)
+{
+	if(m == 'y')
+	{
+		automaticSpotsAroundShip = true;
+		return;
+	}
+	else
+	{
+		automaticSpotsAroundShip = false;
+		return;
+	}
+}
+
+void user::setShips(const char m)
+{
+	if (m == 'y')
+	{
+		int ilosc = 0;
+		for (int i = 0; i < 4; i++)
+		{
+			std::cout << "ustawiasz ilosc stakow " << i + 2 << "masztowych\n";
+			std::cin >> ilosc;
+			quantityShips[i] = ilosc;
+		}
+		return;
+	}
+	else
+	{
+		return;
+	}
+}
+
 

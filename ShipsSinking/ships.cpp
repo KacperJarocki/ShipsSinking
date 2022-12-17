@@ -307,10 +307,15 @@ bool ships::hit(int x, int y)
 		std::cout << "its spotted";
 		return false;
 	}
-	else
+	if(positions[x][y]==0)
 	{
 		positions[x][y] = missed;
 		std::cout << "u missed" << std::endl;
+		return false;
+	}
+	else
+	{
+		std::cout << "smt wrong with the board";
 		return false;
 	}
 }
