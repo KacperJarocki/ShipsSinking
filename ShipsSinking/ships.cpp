@@ -27,25 +27,29 @@ bool ships::canIPlaceShip(int x, int y, int rzad, int miejsca  ) const
 void ships::enemyScreen() const
 {
 	std::cout << "statki przeciwnika\n";
-	for(int i = 0; i < 10; i++)
+	std::cout << "   A B C D E F G H I J\n";
+	for (int i = 0; i < 10; i++)
 	{
+		std::cout << i + 1 << ' ';
+		if (i < 9)
+			std::cout << " ";
 		for (int j = 0; j < 10; j++)
 			switch (positions[i][j])
 			{
 			case 0:
-				std::cout << "-" << "\t";
-				break;
-			case 1:
-				std::cout << "-" << "\t";
-				break;
-			case 2:
-				std::cout << "X" << "\t";
-				break;
-			case 3:
-				std::cout << "*" << "\t";
+				std::cout << "~" << " ";
 				break;
 			case 4:
-				std::cout << "O" << "\t";
+				std::cout << "\033[31m0\033[0m" << " ";
+				break;
+			case 1:
+				std::cout << "~" << " ";
+				break;
+			case 2:
+				std::cout << "\033[31mX\033[0m" << " ";
+				break;
+			case 3:
+				std::cout << "\033[33m*\033[0m" << " ";
 				break;
 			}
 		std::cout << std::endl;
@@ -259,7 +263,7 @@ bool ships::addShipToGame(shipArray& shipTab,int maszty)///bezpieczne dodanie st
 	}
 	else
 	{
-		std::cout << "wyszedles poza pola gry albo ilosc masztow w twoim statku jest za duza\n";
+		std::cout << "wyszedles poza pola gry \n";
 		return false;
 	}		
 	return false;
@@ -325,25 +329,29 @@ void ships::playerScreen() const
 
 {
 	std::cout << "moje statki\n";
+	std::cout << "   A B C D E F G H I J\n";
 	for (int i = 0; i < 10; i++)
 	{
+		std::cout << i+1<<' ';
+		if(i<9)
+			std::cout << " ";
 		for (int j = 0; j < 10; j++)
 			switch (positions[i][j])
 			{
 				case 0:
-				std::cout << "-" << "\t";
+				std::cout << "~"<<" ";
 				break;
 				case 4:
-					std::cout << "-" << "\t";
+					std::cout << "~" << " ";
 					break;
 				case 1:
-					std::cout << "[]" << "\t";
+					std::cout << "\033[32m=\033[0m" << " ";
 					break;
 				case 2:
-					std::cout << "X" << "\t";
+					std::cout << "\033[31mX\033[0m" << " ";
 					break;
 				case 3:
-					std::cout << "*" << "\t";
+					std::cout << "*" << " ";
 				break;
 			}
 		std::cout << std::endl;
