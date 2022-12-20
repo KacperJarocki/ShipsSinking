@@ -114,7 +114,6 @@ bool shipArray::czyPoziom(int x, int y) const
 	ship shipKilled;
 	addres = findAShip(x, y);
 	shipKilled = arrayOfShips[addres];
-	std::cout << shipKilled.PoziomCzyPion() << "";
 	return shipKilled.PoziomCzyPion();
 }
 

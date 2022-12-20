@@ -390,7 +390,7 @@ bool ships::addLongShip(int x,int y,int maszty,ship& shipToAdd)
 		std::cin >> whichWay;
 
 		if ((whichWay == 'p' && prawo == true) || (whichWay == 'd' && dol == true) || (whichWay == 'g' && gora == true) || (whichWay == 'l' && lewo == true) || whichWay == 'c')break;
-		else std::cout << "kliknij prawidlowa opcje\n";
+		 std::cout << "kliknij prawidlowa opcje\n";
 	}
 	
 	switch (whichWay)

@@ -3,7 +3,7 @@
 void game::intro() const
 {
 	char nextMove = ' ';
-	std::cout << "wazne symbole:\n ~ - nieznane tzn woda\n = - statek \n X - trafiony statek\n * - nietrafiony strzal \n 0 - oznaczenia do okola zatopionego statku\n zasady gry:\n wpisuj¹c koordynaty np 1 1 odajemy strzaly, koordynat pierwszy jest w pionie(rosnie w dol ), drugi w poziomie (rosnie do prawej)\n2.po trafionym strzale mozna oddac kolejny w ramach  tej samej tury\n3.Sa 4 rodzaje statkow 2 masztowy 3 masztowy 4 masztowy i 5 masztowy\n4.gra konczy sie po zatopieniu wszytkich statkow przeciwnik\n5.Koordynaty mozna podawac w sposob np.: 1 spacja 1 lub 1 enter 1\n6.nie da sie cofac oddanych strzalow\n\n\ dodatkowe opcje:\n1.jest mozliwosc wlaczenia automatycznego kropkowania statku(gdy zatopi sie statek w okol niego znajda sie symbol 'O' tam juz strzelac nie trzeba)\n2.automatyczne rozstawienie statków\n 3. dobranie ilosci statkow(przeciwnik bedzie mial tyle samo)\n";
+	std::cout << "wazne symbole:\n ~ - nieznane tzn woda\n = - statek \n X - trafiony statek\n * - nietrafiony strzal \n 0 - oznaczenia do okola zatopionego statku\n zasady gry:\n wpisujac koordynaty np 1 A odajemy strzaly, koordynat pierwszy jest w pionie(rosnie w dol ), drugi w poziomie (rosnie do prawej)\n2.po trafionym strzale mozna oddac kolejny w ramach  tej samej tury\n3.jest 5 rodzajow statkow 1 masztowy 2 masztowy 3 masztowy 4 masztowy i 5 masztowy\n4.gra konczy sie po zatopieniu wszytkich statkow przeciwnik\n5.Koordynaty mozna podawac w sposob 1 enter A\n6.nie da sie cofac oddanych strzalow\n\n\ dodatkowe opcje:\n1.jest mozliwosc wlaczenia automatycznego kropkowania statku(gdy zatopi sie statek w okol niego znajda sie symbol 'O' tam juz strzelac nie trzeba)\n2.automatyczne rozstawienie statkow\n 3. dobranie ilosci statkow(przeciwnik bedzie mial tyle samo)\n";
 
 	while (nextMove != 'k')
 	{
@@ -19,15 +19,15 @@ void game::phaseOne(player& gamer, computer& enemy)
 	system("cls");
 	nextMove = ' ';
 	//setting the automatic ship placer
-	std::cout << "czy chcesz aby statki zostaly rozstawione automatycznie? y/\n";
+	std::cout << "czy chcesz aby statki zostaly rozstawione automatycznie? y/jaka kolwiek litera\n";
 	std::cin >> nextMove;
 	gamer.setAutomaticShip(nextMove);
 	//seting the automatic ship spots
-	std::cout << "czy chcesz aby statki zostaly oznaczane dookola automatycznie? y/\n";
+	std::cout << "czy chcesz aby statki zostaly oznaczane dookola automatycznie? y/jaka kolwiek litera\n";
 	std::cin >> nextMove;
 	enemy.setAutomaticSpotting(nextMove);
 	//setting the ships
-	std::cout << "czy chcesz ilosci statkow zostaly zmienione? y/\n";
+	std::cout << "czy chcesz ilosci statkow zostaly zmienione? y/jaka kolwiek litera\n";
 	std::cin >> nextMove;
 	gamer.setShips(nextMove);
 	enemy.copyTheShips(gamer);
@@ -50,7 +50,7 @@ void game::phaseTwo(player& gamer, computer& enemy)
 		else
 			gamer.addShips();
 		while (enemy.AutomaticAddShips() == false);
-		std::cout << "Wpisz Z jezeli chcesz wrocic na poprzednia strone wpisz c nastepnie wcisnij eneter, jezeli nie to wpisz jaka kolwiek litere nastpnie wcisnij enter\n";
+		std::cout << "Wpisz C jezeli chcesz wrocic na poprzednia strone nastepnie wcisnij eneter,\n jezeli nie to wpisz jaka kolwiek litere nastpnie wcisnij enter\n";
 		std::cin >> nextMove;
 		if (std::toupper(nextMove) == 'C')
 		{
@@ -88,7 +88,7 @@ void game::phaseThree(player& gamer, computer& enemy)
 		itsEnd = isItEnd(gamer.getLives(), enemy.getLives());
 		while (nextMove != 'k')
 		{
-			std::cout << "wcisnij k aby oddbyl sie kolejny ostrzal przypuscil ostrzal\n";
+			std::cout << "wcisnij k aby oddbyl sie kolejny ostrzal\n";
 			std::cin >> nextMove;
 		}
 		nextMove = ' ';

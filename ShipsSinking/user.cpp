@@ -28,12 +28,16 @@ void user::addShips()
 	shipTab.clearArray();
 	for (int i = 0; i < 5; i++)
 	{
+		
 		system("cls");
 		myBoard.playerScreen();
 		for (int j = 0; j < quantityShips[4 - i]; j++)
 		{
-			std::string xS = " ", yS = " ";
 			int x, y;
+			do
+			{
+				std::string xS = " ", yS = " ";
+				
 				bool isNumber = false;
 				bool isLetter = false;
 				char ch2[10];
@@ -65,9 +69,9 @@ void user::addShips()
 				x = std::stoi(xS) - 1;
 				y = (int)std::toupper(ch2[0]) - 'A';
 
-			
-			myBoard.playerScreen();
-			while (myBoard.addShipToGame(shipTab, 5-i,x,y) == false);
+
+				myBoard.playerScreen();
+			}while (myBoard.addShipToGame(shipTab, 5 - i, x, y) == false);
 		}
 		
 	}
@@ -280,16 +284,15 @@ void user::setShips(const char m)
 		
 		for (int i = 0; i < 5; i++)
 		{
-			std::string ilosc = "A";
+			std::string ilosc = "AB";
 			std::cout << "ustawiasz ilosc stakow " << i + 1 << " masztowych\n";
 			while (is_number(ilosc) == false)
 			{
-				std::cout << "podaj numer i wcisnij enter\n ";
-				std::getline(std::cin, ilosc);
-				while (ilosc.length() > 1)
+				while (ilosc.length() !=1)
 				{
-					std::cout << "podaj numer i wcisnij enter\n ";
 					std::getline(std::cin, ilosc);
+					std::cout << "podaj numer i wcisnij enter\n ";
+					
 				}
 				 
 			}
