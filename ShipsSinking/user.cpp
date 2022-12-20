@@ -22,25 +22,52 @@ void user::setLives()
 	userLives = shipTab.countOfLives();
 }
 
-void user::liveCheck() const
-{
-	if (userLives < 1)
-	{
-		std::cout << "u lost :(";
-		exit(0);
-	}
-}
-
 void user::addShips()
 {
-	for (int i = 0; i < 4; i++)
+	myBoard.clearPositions();
+	shipTab.clearArray();
+	for (int i = 0; i < 5; i++)
 	{
 		system("cls");
 		myBoard.playerScreen();
-		for (int j = 0; j < quantityShips[3 - i]; j++)
+		for (int j = 0; j < quantityShips[4 - i]; j++)
 		{
+			std::string xS = " ", yS = " ";
+			int x, y;
+				bool isNumber = false;
+				bool isLetter = false;
+				char ch2[10];
+				std::cout << "podaj numer z zakresu 1 - 10 wcisnij enter nastepnie podaj litere A - J,\n beda one reprezentowaly twoje koordynaty:\n ";
+
+				while (isNumber == false)
+				{
+					std::getline(std::cin, xS);
+					while (xS.length() > 2)
+					{
+						std::cout << "podaj numer z zakresu 1 - 10 wcisnij enter\n ";
+						std::getline(std::cin, xS);
+					}
+					isNumber = is_number(xS);
+				}
+				while (isLetter == false)
+				{
+					std::cout << "podaj litere z zakresu A - J :\n ";
+					std::getline(std::cin, yS);
+					while (yS.length() != 1)
+					{
+						std::cout << "podaj JEDNA litere z zakresu A - J :\n ";
+						std::getline(std::cin, yS);
+					}
+					isLetter = containsOnlyLetters(yS);
+				}
+
+				strncpy_s(ch2, yS.c_str(), sizeof(ch2));
+				x = std::stoi(xS) - 1;
+				y = (int)std::toupper(ch2[0]) - 'A';
+
+			
 			myBoard.playerScreen();
-			while (myBoard.addShipToGame(shipTab, i+2) == false);
+			while (myBoard.addShipToGame(shipTab, 5-i,x,y) == false);
 		}
 		
 	}
@@ -63,7 +90,7 @@ bool user::hit(int x, int y)
 		while (isNumber == false)
 		{
 			std::getline(std::cin, xS);
-			while (xS.length()!=1)
+			while (xS.length()>2)
 			{
 				std::cout << "podaj numer z zakresu 1 - 10 wcisnij enter\n ";
 				std::getline(std::cin, xS);
@@ -100,10 +127,9 @@ bool user::hit(int x, int y)
 			if (deadlyHit== true)
 			{
 				std::cout << "trafiony zatopiony\n";
-				if (automaticShips == true)
+				if (automaticSpotsAroundShip == true)
 				{
 					spotsAroundShip(x, y);
-
 				}
 			}
 		}
@@ -130,12 +156,6 @@ bool user::hit(int x, int y)
 }
 
 
-void user::testing()
-{
-	setLives();
-	std::cout << userLives;
-}
-
 int user::getLives() const
 {
 	return userLives;
@@ -143,19 +163,13 @@ int user::getLives() const
 
 void user::spotsAroundShip(int x,int y)
 {
-	bool way;
+	
+	
 	int headX, headY,maszty;
 	maszty = shipTab.getMasztyShip(x, y);
-	way = shipTab.czyPoziom(x, y);
 	headX = shipTab.getHeadXofShip(x,y);
-	headY = shipTab.getHeadYofShip(x,y);
-	std::cout << headX;
-	std::cout << headY;
-	if(maszty == 1)
-	{
-		myBoard.spotting(headX , headY , 3, 3);
-	}
-	else if(way == false)
+	headY = shipTab.getHeadYofShip(x,y);	
+	if(shipTab.czyPoziom(x, y) == false)
 	{
 		myBoard.spotting(headX - 1, headY - 1, maszty + 2, 3);
 		
@@ -174,9 +188,11 @@ void user::spotsAroundShip(int x,int y)
 bool user::AutomaticAddShips()
 {
 	int x, y;
-	for (int i = 0; i < 4; i++)
+	myBoard.clearPositions();
+	shipTab.clearArray();
+	for (int i = 0; i < 5; i++)
 	{
-		for (int j = 0; j < quantityShips[3 - i]; j++)
+		for (int j = 0; j < quantityShips[4 - i]; j++)
 		{
 			int licznikWstawianiaStatku = 0;
 			while (true)
@@ -231,12 +247,12 @@ void user::setAutomaticShip(const char m)
 	if (m == 'y')
 	{
 		automaticShips = true;
-		return;
+		
 	}
 	else
 	{
 		automaticShips = false;
-		return;
+		
 	}
 	
 }
@@ -246,31 +262,45 @@ void user::setAutomaticSpotting(const char m)
 	if(m == 'y')
 	{
 		automaticSpotsAroundShip = true;
-		return;
+		
 	}
 	else
 	{
 		automaticSpotsAroundShip = false;
-		return;
+		
 	}
 }
 
 void user::setShips(const char m)
 {
+	int zabezpiecznie = 0;
+	
 	if (m == 'y')
 	{
-		int ilosc = 0;
-		for (int i = 0; i < 4; i++)
+		
+		for (int i = 0; i < 5; i++)
 		{
-			std::cout << "ustawiasz ilosc stakow " << i + 2 << "masztowych\n";
-			std::cin >> ilosc;
-			quantityShips[i] = ilosc;
+			std::string ilosc = "A";
+			std::cout << "ustawiasz ilosc stakow " << i + 1 << " masztowych\n";
+			while (is_number(ilosc) == false)
+			{
+				std::cout << "podaj numer i wcisnij enter\n ";
+				std::getline(std::cin, ilosc);
+				while (ilosc.length() > 1)
+				{
+					std::cout << "podaj numer i wcisnij enter\n ";
+					std::getline(std::cin, ilosc);
+				}
+				 
+			}
+			quantityShips[i] = std::stoi(ilosc);
+			zabezpiecznie = zabezpiecznie + std::stoi(ilosc);
 		}
-		return;
-	}
-	else
-	{
-		return;
+		if (zabezpiecznie > 15)
+		{
+			std::cout << "statkow jest za duzo zmnien ilosc\n";
+			setShips('y');
+		}
 	}
 }
 

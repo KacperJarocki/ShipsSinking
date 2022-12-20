@@ -9,8 +9,11 @@ ship::ship()
 bool ship::PoziomCzyPion() 
 {
 	
-	if (where[x + 1][y] == 1)return false;
-	else return true;
+	if (maszt == 1)
+		return false;
+	if (where[x + 1][y] == 1)
+		return false;
+	 return true;
 }
 void ship::setMasztAndLives(int maszty)
 {

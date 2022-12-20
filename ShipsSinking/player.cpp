@@ -5,11 +5,12 @@ player::player()
 {
 	RUCOmputer = false;
 	deadlyHit = false;
-	automaticShips = true;
-		quantityShips[0] = 3;
-		quantityShips[1] = 2;
+	automaticShips = false;
+		quantityShips[0] = 4;
+		quantityShips[1] = 3;
 		quantityShips[2] = 2;
 		quantityShips[3] = 1;
+		quantityShips[4] = 0;
 
 
 

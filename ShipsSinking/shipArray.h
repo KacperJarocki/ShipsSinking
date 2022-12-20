@@ -18,6 +18,7 @@ public:
 	int getHeadYofShip(int x, int y)const;  
 	bool czyPoziom(int x, int y) const;
 	int getMasztyShip(int x, int y)const;
+	int getCountOfships() const;
 	
 	
 

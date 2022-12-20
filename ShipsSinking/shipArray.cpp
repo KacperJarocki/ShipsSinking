@@ -1,6 +1,8 @@
     #include "shipArray.h"
 
-void shipArray::copy(const shipArray& shiptab)
+#include <iostream>
+
+    void shipArray::copy(const shipArray& shiptab)
 {
 	countOfShips = shiptab.countOfShips;
 	for (int i = 0; i < shiptab.countOfShips; i++)
@@ -8,6 +10,7 @@ void shipArray::copy(const shipArray& shiptab)
 		arrayOfShips[i] = shiptab.arrayOfShips[i];
 	}
 }
+
 
 shipArray::shipArray()
 {
@@ -106,10 +109,12 @@ int shipArray::getHeadYofShip(int x, int y) const
 
 bool shipArray::czyPoziom(int x, int y) const
 {
+	
 	int addres;
 	ship shipKilled;
 	addres = findAShip(x, y);
 	shipKilled = arrayOfShips[addres];
+	std::cout << shipKilled.PoziomCzyPion() << "";
 	return shipKilled.PoziomCzyPion();
 }
 
@@ -122,6 +127,11 @@ int shipArray::getMasztyShip(int x, int y) const
 	addres = findAShip(x, y);
 	shipKilled = arrayOfShips[addres];
 	return shipKilled.getMaszt();
+}
+
+int shipArray::getCountOfships() const
+{
+	return this->countOfShips;
 }
 
 

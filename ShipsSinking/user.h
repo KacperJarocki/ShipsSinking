@@ -11,7 +11,7 @@ protected:
 	shipArray shipTab;
 	ships myBoard;
 	int  userLives;
-	int  quantityShips[4]{};// quantity of ships of each index is another 
+	int  quantityShips[5]{};// quantity of ships of each index is another 
 	bool automaticShips;// if true your ships would be placed randomly on board, always true for comp
 	bool automaticSpotsAroundShip;// if true when you will destroy enemy's ship it will surrounded by dots, always true for comp
 	friend class computer;

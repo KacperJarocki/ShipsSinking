@@ -78,7 +78,8 @@ bool ships::AutomaticAddShipToGame(shipArray& shipTab, int maszty, int x, int y)
 				if (maszty == 1)
 				{
 					addShip(x, y, shipToAdd);
-					return true;
+					
+					
 				}
 				else
 				{
@@ -173,9 +174,9 @@ void ships::spotting(int x, int y, int kwadrat, int miejsca)
 	for (int i = x; i < kwadrat + x; i++)
 		for (int j = y; j < miejsca + y; j++)
 			if(i > -1 && i < 10 && j>-1 && j < 10)
-				if(positions[i][j] == 0)
-						positions[i][j] = 4;
-
+				if (positions[i][j] == 0)
+					positions[i][j] = 4;
+				
 
 				
 	
@@ -205,39 +206,30 @@ bool ships::canIshotThere(int x, int y) const
 
 
 
-bool ships::addShipToGame(shipArray& shipTab,int maszty)///bezpieczne dodanie statku ze sprawdzeniami
+bool ships::addShipToGame(shipArray& shipTab,int maszty,int x,int y)///bezpieczne dodanie statku ze sprawdzeniami
 {
-	int x=-1, y = -1;
 	ship shipToAdd;
 	bool zmianaKoordynatow=true;
-
-	std::cout << "podaj x , y a ten statek ma,wpisz "<<maszty<<" masztow\n";
-		std::cin >>  x;
-		std::cin >>  y;
-
-	
 	
 	shipToAdd.setMasztAndLives(maszty);
 	
 	
-	if (ifOutsideOfArrey(x, y, maszty) == false)
+	if (ifOutsideOfArrey(x+1, y+1, maszty) == false)
 	{
-		if (positions[x-1][y-1]==1)
+		if (positions[x][y]==1)
 		{
-			std::cout << "ju¿ jest tam statek\n";
+			std::cout << "juz jest tam statek\n";
 			return false;
 		}
-		if (positions[x-1][y-1] == 0)
+		if (positions[x][y] == 0)
 		{
-			x = x - 1;
-			y = y - 1;
-			if (canIPlaceShip(x-1, y-1, 3, 3) == true)
+			if (canIPlaceShip(x, y, 3, 3) == true)
 			{
 				if (maszty == 1)
 				{
 					addShip(x, y, shipToAdd);
 					shipToAdd.setShip();
-					return true;
+					shipTab.addShipToArray(shipToAdd);
 				}
 				else
 				{
@@ -246,9 +238,8 @@ bool ships::addShipToGame(shipArray& shipTab,int maszty)///bezpieczne dodanie st
 					{
 						return false;
 					}
-
+					shipTab.addShipToArray(shipToAdd);
 				}
-				shipTab.addShipToArray(shipToAdd);
 				return true;
 				
 			}
@@ -351,7 +342,7 @@ void ships::playerScreen() const
 					std::cout << "\033[31mX\033[0m" << " ";
 					break;
 				case 3:
-					std::cout << "*" << " ";
+					std::cout << "\033[33m*\033[0m" << " ";
 				break;
 			}
 		std::cout << std::endl;

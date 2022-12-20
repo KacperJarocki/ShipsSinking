@@ -10,7 +10,7 @@ public:
 	
 	void copy(const ships& copy);
 	bool canIshotThere(int x, int y) const;
-	bool addShipToGame(shipArray &shipTab,int maszty);
+	bool addShipToGame(shipArray &shipTab,int maszty,int x ,int y);
 	void clearPositions();
 	void addShip(int x, int y,ship& ship);
 	bool hit(int x,int y);///returns true if ship was hitted
