@@ -15,6 +15,7 @@ bool containsOnlyLetters(std::string const& str) {
 
 user::user()
 {
+	//dfasfsafa
 }
 
 void user::setLives()
