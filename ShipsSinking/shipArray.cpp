@@ -87,6 +87,7 @@ void shipArray::clearArray()
 	{
 		arrayOfShips[i] = clear;
 	}
+	countOfShips = 0;
 }
 
 int shipArray::getHeadXofShip(int x, int y) const

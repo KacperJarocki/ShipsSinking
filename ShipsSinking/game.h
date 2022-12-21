@@ -3,12 +3,14 @@
 #include "computer.h"
 class game
 {
+	player gamer;
+	computer enemy;
 public:
 	void intro() const;
 
-		void phaseOne(player & gamer, computer & enemy);
-		void phaseTwo(player & gamer, computer & enemy);
-		void phaseThree(player & gamer, computer & enemy);
+		void phaseOne();
+		void phaseTwo();
+		void phaseThree();
 		
 
 };

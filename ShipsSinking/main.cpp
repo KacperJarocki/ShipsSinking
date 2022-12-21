@@ -14,16 +14,15 @@
 int main()
 {
 	game sinikingShips;
-	player player;
-	computer enemy;
+
 	char move = ' ';
 	sinikingShips.intro();
 	while (true)
 	{
 		srand(time(0));
-		sinikingShips.phaseOne(player, enemy);
-		sinikingShips.phaseTwo(player, enemy);
-		sinikingShips.phaseThree(player, enemy);
+		sinikingShips.phaseOne();
+		sinikingShips.phaseTwo();
+		sinikingShips.phaseThree();
 		system("cls");
 		std::cout << "Gra sie skonczyla jezeli chcesz zagrac kolejna to wprowadz y:\n";
 		std::cin >> move;

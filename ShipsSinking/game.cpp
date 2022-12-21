@@ -13,21 +13,21 @@ void game::intro() const
 
 }
 
-void game::phaseOne(player& gamer, computer& enemy)
+void game::phaseOne()
 {
 	char nextMove = ' ';
 	system("cls");
 	nextMove = ' ';
 	//setting the automatic ship placer
-	std::cout << "czy chcesz aby statki zostaly rozstawione automatycznie? y/jaka kolwiek litera\n";
+	std::cout << "czy chcesz aby statki zostaly rozstawione automatycznie? y/n\n";
 	std::cin >> nextMove;
 	gamer.setAutomaticShip(nextMove);
 	//seting the automatic ship spots
-	std::cout << "czy chcesz aby statki zostaly oznaczane dookola automatycznie? y/jaka kolwiek litera\n";
+	std::cout << "czy chcesz aby statki zostaly oznaczane dookola automatycznie? y/n\n";
 	std::cin >> nextMove;
 	enemy.setAutomaticSpotting(nextMove);
 	//setting the ships
-	std::cout << "czy chcesz ilosci statkow zostaly zmienione? y/jaka kolwiek litera\n";
+	std::cout << "czy chcesz ilosci statkow zostaly zmienione? y/n\n";
 	std::cin >> nextMove;
 	gamer.setShips(nextMove);
 	enemy.copyTheShips(gamer);
@@ -38,7 +38,7 @@ void game::phaseOne(player& gamer, computer& enemy)
 	}
 }
 
-void game::phaseTwo(player& gamer, computer& enemy)
+void game::phaseTwo()
 {
 	system("cls");
 	char nextMove = ' ';
@@ -54,10 +54,10 @@ void game::phaseTwo(player& gamer, computer& enemy)
 		std::cin >> nextMove;
 		if (std::toupper(nextMove) == 'C')
 		{
-			phaseOne(gamer, enemy);
-			phaseTwo(gamer, enemy);
+			phaseOne();
+			phaseTwo();
+			break;
 		}
-		else
 			break;
 
 	}
@@ -69,7 +69,7 @@ bool isItEnd(int pLives, int cLives)
 		return true;
 	return false;
 }
-void game::phaseThree(player& gamer, computer& enemy)
+void game::phaseThree()
 {
 	int nowaTura = 1;
 	bool itsEnd = isItEnd(gamer.getLives(), enemy.getLives());
@@ -81,7 +81,9 @@ void game::phaseThree(player& gamer, computer& enemy)
 		system("cls");
 		std::cout << "rozpoczyna gracz\n";
 		std::cout << nowaTura << " tura\n";
-		std::cout << "przeciwnik oddal strzal w nastepujace koordynaty\t" << enemy.showNextX() + 1 << "\t" << enemy.showNextY() + 1 << "\n";
+		if(nowaTura>1)
+		std::cout << "przeciwnik oddal strzal w nastepujace koordynaty\t" << enemy.showNextX() + 1 << "\t" << (char)(enemy.showNextY() + 'A') << "\n";
+
 		gamer.showTheBoard();
 		enemy.showTheBoard();
 		while (enemy.hit(0, 0) == false);

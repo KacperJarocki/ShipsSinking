@@ -192,6 +192,7 @@ void user::spotsAroundShip(int x,int y)
 bool user::AutomaticAddShips()
 {
 	int x, y;
+	srand(time(0));
 	myBoard.clearPositions();
 	shipTab.clearArray();
 	for (int i = 0; i < 5; i++)
@@ -207,11 +208,8 @@ bool user::AutomaticAddShips()
 				if(myBoard.AutomaticAddShipToGame(shipTab,5-i,x,y)==true)
 					break;
 				licznikWstawianiaStatku++;
-				if (licznikWstawianiaStatku > 10000000)
+				if (licznikWstawianiaStatku > 1000000)
 				{
-					
-					myBoard.clearPositions();
-					shipTab.clearArray();
 					return false;
 				}
 			}
